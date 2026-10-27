@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="One button. A little moment of interaction.">
+  <title>Just a button</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; min-height: 100svh; display: grid; grid-template-rows: auto 1fr auto; background: #f7f6f2; color: #252720; font-family: Arial, sans-serif; }
+    header, footer { padding: 28px 36px; display: flex; justify-content: space-between; align-items: center; }
+    header { font-size: 14px; font-weight: 700; letter-spacing: -.3px; }
+    .mark { display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: #6e7e50; margin-right: 8px; }
+    .edition, footer { color: #73756c; font-size: 11px; font-weight: 400; letter-spacing: 1px; }
+    main { text-align: center; padding: 48px 24px 72px; align-self: center; }
+    .eyebrow { color: #73756c; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; margin: 0 0 22px; }
+    h1 { font-size: clamp(44px, 8vw, 76px); font-weight: 400; letter-spacing: -3px; margin: 0 0 18px; line-height: 1.05; }
+    .intro { color: #73756c; font-size: 16px; margin: 0 0 44px; line-height: 1.6; }
+    button { border: 1px solid #354128; border-radius: 100px; padding: 20px 35px; background: #424f33; color: #fff; font: 500 16px Arial, sans-serif; cursor: pointer; box-shadow: 0 5px 0 #2d3723, 0 10px 20px #303c2515; transition: transform .15s, background .15s, box-shadow .15s; }
+    button:hover { background: #52603f; transform: translateY(-2px); box-shadow: 0 7px 0 #2d3723, 0 12px 24px #303c2520; }
+    button:active { transform: translateY(4px); box-shadow: 0 1px 0 #2d3723; }
+    button:focus-visible { outline: 3px solid #80965f; outline-offset: 7px; }
+    button span { margin-left: 22px; }
+    #status { min-height: 24px; margin: 28px 0 0; color: #73756c; font-size: 13px; }
+    footer { border-top: 1px solid #e4e4dc; margin: 0 36px; padding: 22px 0; letter-spacing: 0; }
+    @media (max-width: 480px) { header { padding: 24px; } footer { margin: 0 24px; } .edition { font-size: 10px; } }
+    @media (prefers-reduced-motion: reduce) { button { transition: none; } }
+  </style>
+</head>
+<body>
+  <header><div><span class="mark" aria-hidden="true"></span>just a button.</div><span class="edition">A SIMPLE LITTLE WEBSITE</span></header>
+  <main>
+    <p class="eyebrow">Small action. Instant reaction.</p>
+    <h1>Give it a click.</h1>
+    <p class="intro">Sometimes, all you need is a button.</p>
+    <button id="click-button" type="button">Click me<span aria-hidden="true">↗</span></button>
+    <p id="status" role="status" aria-live="polite">Go on. See what happens.</p>
+  </main>
+  <footer><span>Made for a little interaction.</span><span>One click at a time.</span></footer>
+  <script>
+    let clicks = 0;
+    const button = document.getElementById('click-button');
+    const status = document.getElementById('status');
+    button.addEventListener('click', () => {
+      clicks += 1;
+      status.textContent = clicks === 1 ? 'You clicked it! That’s 1 click.' : `You clicked it! That’s ${clicks} clicks.`;
+    });
+  </script>
+</body>
+</html>
